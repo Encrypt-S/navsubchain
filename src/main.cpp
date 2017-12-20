@@ -2059,14 +2059,6 @@ bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoins
             const CCoins *coins = inputs.AccessCoins(prevout.hash);
             assert(coins);
 
-            // If prev is coinbase, check that it's matured
-            if ((coins->IsCoinBase() || coins->IsCoinStake()) && !GetBoolArg("-testnet",false)) {
-                if (nSpendHeight - coins->nHeight < COINBASE_MATURITY && nSpendHeight - coins->nHeight > 0)
-                    return state.Invalid(false,
-                        REJECT_INVALID, "bad-txns-premature-spend-of-coinbase",
-                        strprintf("tried to spend %s at depth %d", coins->IsCoinBase() ?"coinbase":"coinstake",nSpendHeight - coins->nHeight));
-            }
-
             // Check for negative or overflow input values
             nValueIn += coins->vout[prevout.n].nValue;
             if (!MoneyRange(coins->vout[prevout.n].nValue) || !MoneyRange(nValueIn))
