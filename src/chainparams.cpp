@@ -133,22 +133,36 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x80;
-        pchMessageStart[1] = 0x50;
-        pchMessageStart[2] = 0x34;
-        pchMessageStart[3] = 0x20;
-        nDefaultPort = 44440;
+        pchMessageStart[0] = 0x81;
+        pchMessageStart[1] = 0x51;
+        pchMessageStart[2] = 0x35;
+        pchMessageStart[3] = 0x21;
+        nDefaultPort = 33330;
         nPruneAfterHeight = 100000;
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
-        genesis = CreateGenesisBlock(1460561040, 6945, 0x1f00ffff, 1, 0);
+        genesis = CreateGenesisBlock(1513785453, 24487, 0x1f00ffff, 1, 0);
 
-	      consensus.hashGenesisBlock = genesis.GetHash();
+	consensus.hashGenesisBlock = genesis.GetHash();
+        uint256 hashGenesisBlock = uint256S("0x0000be1c65205c2aa953ef09e1caf6ad6a000f96fc967b1b5437000cadf6b426");
 
-        assert(consensus.hashGenesisBlock == uint256S("0x00006a4e3e18c71c6d48ad6c261e2254fa764cf29607a4357c99b712dfbb8e6a"));
-        assert(genesis.hashMerkleRoot == uint256S("0xc507eec6ccabfd5432d764afceafba42d2d946594b8a60570cb2358a7392c61a"));
+        if (true && (genesis.GetHash() != hashGenesisBlock || genesis.hashMerkleRoot != uint256S("0x1e0675a4b6b944aba34f0a98b03e4a933b508194f5c3ed939a477843aee849fc")))
+        {
+            printf("recalculating params for testnet.\n");
+            printf("old testnet genesis nonce: %d\n", genesis.nNonce);
+            printf("old testnet genesis hash:  %s\n", hashGenesisBlock.ToString().c_str());
+            // deliberately empty for loop finds nonce value.
+            for(; genesis.GetHash() > consensus.powLimit; genesis.nNonce++){ }
+            printf("new testnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+            printf("new testnet genesis nonce: %d\n", genesis.nNonce);
+            printf("new testnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+        }
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,53);
+
+        assert(consensus.hashGenesisBlock == uint256S("0x0000be1c65205c2aa953ef09e1caf6ad6a000f96fc967b1b5437000cadf6b426"));
+        assert(genesis.hashMerkleRoot == uint256S("0x1e0675a4b6b944aba34f0a98b03e4a933b508194f5c3ed939a477843aee849fc"));
+
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,57);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,150);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
@@ -158,10 +172,10 @@ public:
       	vSeeds.clear();
 
         vSeeds.push_back(CDNSSeedData("supernode.subchain.org", "95.183.51.56"));
-        vSeeds.push_back(CDNSSeedData("SUBtech1.subchain.org", "95.183.52.55"));
-        vSeeds.push_back(CDNSSeedData("SUBtech2.subchain.org", "95.183.52.28"));
-        vSeeds.push_back(CDNSSeedData("SUBtech3.subchain.org", "95.183.52.29"));
-        vSeeds.push_back(CDNSSeedData("SUBtech4.subchain.org", "95.183.53.184"));
+        vSeeds.push_back(CDNSSeedData("navtech1.navcoin.org", "95.183.52.55"));
+        vSeeds.push_back(CDNSSeedData("navtech2.navcoin.org", "95.183.52.28"));
+        vSeeds.push_back(CDNSSeedData("navtech3.navcoin.org", "95.183.52.29"));
+        vSeeds.push_back(CDNSSeedData("navtech4.navcoin.org", "95.183.53.184"));
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
