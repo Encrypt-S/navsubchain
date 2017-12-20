@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NAVCOIN_STREAMS_H
-#define NAVCOIN_STREAMS_H
+#ifndef SUBCHAIN_STREAMS_H
+#define SUBCHAIN_STREAMS_H
 
 #include "support/allocators/zeroafterfree.h"
 #include "serialize.h"
@@ -518,9 +518,9 @@ protected:
     bool Fill() {
         unsigned int pos = nSrcPos % vchBuf.size();
         unsigned int readNow = vchBuf.size() - pos;
-        unsigned int nAvail = vchBuf.size() - (nSrcPos - nReadPos) - nRewind;
-        if (nAvail < readNow)
-            readNow = nAvail;
+        unsigned int SUBail = vchBuf.size() - (nSrcPos - nReadPos) - nRewind;
+        if (SUBail < readNow)
+            readNow = SUBail;
         if (readNow == 0)
             return false;
         size_t read = fread((void*)&vchBuf[pos], 1, readNow, src);
@@ -641,4 +641,4 @@ public:
     }
 };
 
-#endif // NAVCOIN_STREAMS_H
+#endif // SUBCHAIN_STREAMS_H

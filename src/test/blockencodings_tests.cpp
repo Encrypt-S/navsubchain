@@ -7,7 +7,7 @@
 #include "chainparams.h"
 #include "random.h"
 
-#include "test/test_navcoin.h"
+#include "test/test_subchain.h"
 
 #include <boost/test/unit_test.hpp>
 

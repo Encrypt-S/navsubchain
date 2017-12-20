@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  subchaind The subchain core server.
+#
+#
+# chkconfig: 345 80 20
+# description: subchaind
+# processname: subchaind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/subchaind, see below
+if [ -f /etc/sysconfig/subchaind ]; then
+        . /etc/sysconfig/subchaind
+fi
+
+RETVAL=0
+
+prog=subchaind
+# you can override the lockfile via SUBCHAIND_LOCKFILE in /etc/sysconfig/subchaind
+lockfile=${SUBCHAIND_LOCKFILE-/var/lock/subsys/subchaind}
+
+# subchaind defaults to /usr/bin/subchaind, override with SUBCHAIND_BIN
+subchaind=${SUBCHAIND_BIN-/usr/bin/subchaind}
+
+# subchaind opts default to -disablewallet, override with SUBCHAIND_OPTS
+subchaind_opts=${SUBCHAIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $subchaind $subchaind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

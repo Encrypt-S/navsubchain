@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=SubChain
+Comment=SubChain P2P Cryptocurrency
+Comment[fr]=SubChain, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=SubChain, eşten eşe kriptografik sanal para birimi
+Exec=subchain-qt %u
+Terminal=false
+Type=Application
+Icon=subchain128
+MimeType=x-scheme-handler/subchain;
+Categories=Office;Finance;

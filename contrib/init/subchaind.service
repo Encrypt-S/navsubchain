@@ -1,0 +1,22 @@
+[Unit]
+Description=SubChain's distributed currency daemon
+After=network.target
+
+[Service]
+User=subchain
+Group=subchain
+
+Type=forking
+PIDFile=/var/lib/subchaind/subchaind.pid
+ExecStart=/usr/bin/subchaind -daemon -pid=/var/lib/subchaind/subchaind.pid \
+-conf=/etc/subchain/subchain.conf -datadir=/var/lib/subchaind -disablewallet
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

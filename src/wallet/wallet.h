@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NAVCOIN_WALLET_WALLET_H
-#define NAVCOIN_WALLET_WALLET_H
+#ifndef SUBCHAIN_WALLET_WALLET_H
+#define SUBCHAIN_WALLET_WALLET_H
 
 #include "amount.h"
 #include "streams.h"
@@ -251,11 +251,11 @@ public:
     mutable CAmount nDebitCached;
     mutable CAmount nCreditCached;
     mutable CAmount nImmatureCreditCached;
-    mutable CAmount nAvailableCreditCached;
+    mutable CAmount SUBailableCreditCached;
     mutable CAmount nWatchDebitCached;
     mutable CAmount nWatchCreditCached;
     mutable CAmount nImmatureWatchCreditCached;
-    mutable CAmount nAvailableWatchCreditCached;
+    mutable CAmount SUBailableWatchCreditCached;
     mutable CAmount nChangeCached;
 
     bool fAnon;
@@ -306,10 +306,10 @@ public:
         nDebitCached = 0;
         nCreditCached = 0;
         nImmatureCreditCached = 0;
-        nAvailableCreditCached = 0;
+        SUBailableCreditCached = 0;
         nWatchDebitCached = 0;
         nWatchCreditCached = 0;
-        nAvailableWatchCreditCached = 0;
+        SUBailableWatchCreditCached = 0;
         nImmatureWatchCreditCached = 0;
         nChangeCached = 0;
         nOrderPos = -1;
@@ -1047,4 +1047,4 @@ public:
     }
 };
 
-#endif // NAVCOIN_WALLET_WALLET_H
+#endif // SUBCHAIN_WALLET_WALLET_H

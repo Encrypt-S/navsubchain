@@ -1,0 +1,33 @@
+# /etc/conf.d/subchaind: config file for /etc/init.d/subchaind
+
+# Config file location
+#SUBCHAIND_CONFIGFILE="/etc/subchain/subchain.conf"
+
+# What directory to write pidfile to?  (created and owned by $SUBCHAIND_USER)
+#SUBCHAIND_PIDDIR="/var/run/subchaind"
+
+# What filename to give the pidfile
+#SUBCHAIND_PIDFILE="${SUBCHAIND_PIDDIR}/subchaind.pid"
+
+# Where to write subchaind data (be mindful that the blockchain is large)
+#SUBCHAIND_DATADIR="/var/lib/subchaind"
+
+# User and group to own subchaind process
+#SUBCHAIND_USER="subchain"
+#SUBCHAIND_GROUP="subchain"
+
+# Path to subchaind executable
+#SUBCHAIND_BIN="/usr/bin/subchaind"
+
+# Nice value to run subchaind under
+#SUBCHAIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+SUBCHAIND_OPTS="-disablewallet"
+
+# The timeout in seconds OpenRC will wait for subchaind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+SUBCHAIND_SIGTERM_TIMEOUT=60

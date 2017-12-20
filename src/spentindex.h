@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NAVCOIN_SPENTINDEX_H
-#define NAVCOIN_SPENTINDEX_H
+#ifndef SUBCHAIN_SPENTINDEX_H
+#define SUBCHAIN_SPENTINDEX_H
 
 #include "uint256.h"
 #include "amount.h"
@@ -95,4 +95,4 @@ struct CSpentIndexKeyCompare
     }
 };
 
-#endif // NAVCOIN_SPENTINDEX_H
+#endif // SUBCHAIN_SPENTINDEX_H

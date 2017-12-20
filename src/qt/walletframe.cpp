@@ -5,7 +5,7 @@
 #include "walletframe.h"
 #include "skinize.h"
 
-#include "navcoingui.h"
+#include "subchaingui.h"
 #include "walletview.h"
 #include "util.h"
 
@@ -14,7 +14,7 @@
 #include <QHBoxLayout>
 #include <QLabel>
 
-WalletFrame::WalletFrame(const PlatformStyle *platformStyle, NavCoinGUI *_gui) :
+WalletFrame::WalletFrame(const PlatformStyle *platformStyle, SubChainGUI *_gui) :
     QFrame(_gui),
     gui(_gui),
     platformStyle(platformStyle)
@@ -73,7 +73,7 @@ bool WalletFrame::addWallet(const QString& name, WalletModel *walletModel)
         return false;
 
     WalletView *walletView = new WalletView(platformStyle, this);
-    walletView->setNavCoinGUI(gui);
+    walletView->setSubChainGUI(gui);
     walletView->setClientModel(clientModel);
     walletView->setWalletModel(walletModel);
     walletView->showOutOfSyncWarning(bOutOfSync);

@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NAVCOIN_NET_H
-#define NAVCOIN_NET_H
+#ifndef SUBCHAIN_NET_H
+#define SUBCHAIN_NET_H
 
 #include "amount.h"
 #include "bloom.h"
@@ -858,4 +858,4 @@ struct AddedNodeInfo
 
 std::vector<AddedNodeInfo> GetAddedNodeInfo();
 
-#endif // NAVCOIN_NET_H
+#endif // SUBCHAIN_NET_H

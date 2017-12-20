@@ -1,0 +1,157 @@
+
+## <summary>policy for subchain</summary>
+
+
+########################################
+## <summary>
+##	Transition to subchain.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`subchain_domtrans',`
+	gen_require(`
+		type subchain_t, subchain_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, subchain_exec_t, subchain_t)
+')
+
+
+########################################
+## <summary>
+##	Execute subchain server in the subchain domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`subchain_initrc_domtrans',`
+	gen_require(`
+		type subchain_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, subchain_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search subchain lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`subchain_search_lib',`
+	gen_require(`
+		type subchain_var_lib_t;
+	')
+
+	allow $1 subchain_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read subchain lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`subchain_read_lib_files',`
+	gen_require(`
+		type subchain_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, subchain_var_lib_t, subchain_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage subchain lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`subchain_manage_lib_files',`
+	gen_require(`
+		type subchain_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, subchain_var_lib_t, subchain_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage subchain lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`subchain_manage_lib_dirs',`
+	gen_require(`
+		type subchain_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, subchain_var_lib_t, subchain_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	an subchain environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`subchain_admin',`
+	gen_require(`
+		type subchain_t;
+		type subchain_initrc_exec_t;
+		type subchain_var_lib_t;
+	')
+
+	allow $1 subchain_t:process { ptrace signal_perms };
+	ps_process_pattern($1, subchain_t)
+
+	subchain_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 subchain_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, subchain_var_lib_t)
+
+')
+

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2015 The Bitcoin Core developers
-// Copyright (c) 2017 The NavCoin Core developers
+// Copyright (c) 2017 The SubChain Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -55,7 +55,7 @@
 using namespace std;
 
 #if defined(NDEBUG)
-# error "Navcoin cannot be compiled without assertions."
+# error "SUBcoin cannot be compiled without assertions."
 #endif
 
 /**
@@ -135,7 +135,7 @@ arith_uint256 bnProofOfStakeLimitV2(~arith_uint256() >> 20);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const string strMessageMagic = "Navcoin Signed Message:\n";
+const string strMessageMagic = "SUBcoin Signed Message:\n";
 
 
 enum FlushStateMode {
@@ -2050,7 +2050,7 @@ bool CheckTxInputs(const CTransaction& tx, CValidationState& state, const CCoins
         // This doesn't trigger the DoS code on purpose; if it did, it would make it easier
         // for an attacker to attempt to split the network.
         if (!inputs.HaveInputs(tx))
-            return state.Invalid(false, 0, "", "Inputs unavailable");
+            return state.Invalid(false, 0, "", "Inputs uSUBailable");
         CAmount nValueIn = 0;
         CAmount nFees = 0;
         for (unsigned int i = 0; i < tx.vin.size(); i++)
@@ -2482,7 +2482,7 @@ bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, unsigne
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("navcoin-scriptch");
+    RenameThread("subchain-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -4503,7 +4503,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
                         continue;
                     if(!(pindexPrev->nHeight - pblockindex->nHeight > Params().GetConsensus().nCommunityFundMinAge))
                         return state.DoS(100, error("CheckBlock() : payment request not mature enough."));
-                    if(block.vtx[0].vout[i].nValue != prequest.nAmount || prequest.fState != CFund::ACCEPTED || parent.Address != CNavCoinAddress(address).ToString())
+                    if(block.vtx[0].vout[i].nValue != prequest.nAmount || prequest.fState != CFund::ACCEPTED || parent.Address != CSubChainAddress(address).ToString())
                         return state.DoS(100, error("CheckBlock() : coinbase output does not match an accepted payment request"));
                     else {
                         prequest.paymenthash = block.GetHash();
@@ -5879,19 +5879,19 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
 
         if(pfrom->nVersion < 70015)
         {
-            reason = "You are using an old version of NavCoin, please update.";
+            reason = "You are using an old version of SubChain, please update.";
             fObsolete = true;
         }
 
         if(pfrom->nVersion < 70017 && IsWitnessEnabled(chainActive.Tip(), Params().GetConsensus()))
         {
-            reason = "Segregated Witness has been enabled and you are using an old version of NavCoin, please update.";
+            reason = "Segregated Witness has been enabled and you are using an old version of SubChain, please update.";
             fObsolete = true;
         }
 
         if(pfrom->nVersion < 70020 && IsCommunityFundEnabled(chainActive.Tip(), Params().GetConsensus()))
         {
-            reason = "Community Fund has been enabled and you are using an old version of NavCoin, please update.";
+            reason = "Community Fund has been enabled and you are using an old version of SubChain, please update.";
             fObsolete = true;
         }
 
@@ -7000,11 +7000,11 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
     {
         int64_t pingUsecEnd = nTimeReceived;
         uint64_t nonce = 0;
-        size_t nAvail = vRecv.in_avail();
+        size_t SUBail = vRecv.in_avail();
         bool bPingFinished = false;
         std::string sProblem;
 
-        if (nAvail >= sizeof(nonce)) {
+        if (SUBail >= sizeof(nonce)) {
             vRecv >> nonce;
 
             // Only process pong message if there is an outstanding ping (old ping without nonce should never pong)
@@ -7045,7 +7045,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                 sProblem,
                 pfrom->nPingNonceSent,
                 nonce,
-                nAvail);
+                SUBail);
         }
         if (bPingFinished) {
             pfrom->nPingNonceSent = 0;

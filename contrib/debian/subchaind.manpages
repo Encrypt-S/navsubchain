@@ -1,0 +1,3 @@
+debian/manpages/subchaind.1
+debian/manpages/subchain.conf.5
+debian/manpages/subchain-cli.1

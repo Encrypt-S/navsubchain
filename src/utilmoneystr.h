@@ -6,8 +6,8 @@
 /**
  * Money parsing/formatting utilities.
  */
-#ifndef NAVCOIN_UTILMONEYSTR_H
-#define NAVCOIN_UTILMONEYSTR_H
+#ifndef SUBCHAIN_UTILMONEYSTR_H
+#define SUBCHAIN_UTILMONEYSTR_H
 
 #include <stdint.h>
 #include <string>
@@ -18,4 +18,4 @@ std::string FormatMoney(const CAmount& n);
 bool ParseMoney(const std::string& str, CAmount& nRet);
 bool ParseMoney(const char* pszIn, CAmount& nRet);
 
-#endif // NAVCOIN_UTILMONEYSTR_H
+#endif // SUBCHAIN_UTILMONEYSTR_H

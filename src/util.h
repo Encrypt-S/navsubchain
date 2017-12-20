@@ -7,11 +7,11 @@
  * Server/client environment: argument handling, config file parsing,
  * logging, thread wrappers
  */
-#ifndef NAVCOIN_UTIL_H
-#define NAVCOIN_UTIL_H
+#ifndef SUBCHAIN_UTIL_H
+#define SUBCHAIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/navcoin-config.h"
+#include "config/subchain-config.h"
 #endif
 
 #include "compat.h"
@@ -54,8 +54,8 @@ extern bool fLogIPs;
 extern std::atomic<bool> fReopenDebugLog;
 extern CTranslationInterface translationInterface;
 
-extern const char * const NAVCOIN_CONF_FILENAME;
-extern const char * const NAVCOIN_PID_FILENAME;
+extern const char * const SUBCHAIN_CONF_FILENAME;
+extern const char * const SUBCHAIN_PID_FILENAME;
 
 /**
  * Translation function: Call Translate signal on UI interface, which returns a boost::optional result.
@@ -229,7 +229,7 @@ void RenameThread(const char* name);
  */
 template <typename Callable> void TraceThread(const char* name,  Callable func)
 {
-    std::string s = strprintf("navcoin-%s", name);
+    std::string s = strprintf("subchain-%s", name);
     RenameThread(s.c_str());
     try
     {
@@ -254,4 +254,4 @@ template <typename Callable> void TraceThread(const char* name,  Callable func)
 
 std::string CopyrightHolders(const std::string& strPrefix);
 
-#endif // NAVCOIN_UTIL_H
+#endif // SUBCHAIN_UTIL_H

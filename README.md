@@ -1,10 +1,10 @@
-![alt text](https://raw.githubusercontent.com/navcoindev/navcoin-media/master/logo/logo-extended.png "Logo text 2")
+![alt text](https://raw.githubusercontent.com/subchaindev/subchain-media/master/logo/logo-extended.png "Logo text 2")
 
-This is the working repository for NAV Coin 4.0.6, our fork of bitcoin-core 0.13.
+This is the working repository for SUB Coin 4.0.6, our fork of bitcoin-core 0.13.
 
 For more information please visit the website:
 
-https://navcoin.org/project-roadmap/
+https://subchain.org/project-roadmap/
 
 ## Coin Specifications
 
@@ -17,7 +17,7 @@ https://navcoin.org/project-roadmap/
 | Port | `44440` |
 | RPC Port | `44444` |
 
-## Navtech Settings
+## SUBtech Settings
 
 | Specification | Value |
 |:-----------|:-----------|
@@ -31,9 +31,9 @@ https://navcoin.org/project-roadmap/
 | Site | link |
 |:-----------|:-----------|
 | Bitcointalk | https://bitcointalk.org/index.php?topic=679791 |
-| Facebook | https://www.facebook.com/NAVCoin |
-| Twitter | https://twitter.com/NavCoin |
-| Reddit | http://www.reddit.com/r/navcoin |
-| Slack | https://navcoin-sign-up.herokuapp.com |
-| Telegram | https://t.me/navcoin |
+| Facebook | https://www.facebook.com/SUBCoin |
+| Twitter | https://twitter.com/SubChain |
+| Reddit | http://www.reddit.com/r/subchain |
+| Slack | https://subchain-sign-up.herokuapp.com |
+| Telegram | https://t.me/subchain |
 | Discord | https://discord.gg/y4Vu9jw |

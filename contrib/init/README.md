@@ -1,11 +1,11 @@
 Sample configuration files for:
 
-SystemD: navcoind.service
-Upstart: navcoind.conf
-OpenRC:  navcoind.openrc
-         navcoind.openrcconf
-CentOS:  navcoind.init
-OS X:    org.navcoin.navcoind.plist
+SystemD: subchaind.service
+Upstart: subchaind.conf
+OpenRC:  subchaind.openrc
+         subchaind.openrcconf
+CentOS:  subchaind.init
+OS X:    org.subchain.subchaind.plist
 
 have been made available to assist packagers in creating node packages here.
 

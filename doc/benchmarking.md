@@ -1,11 +1,11 @@
 Benchmarking
 ============
 
-NavCoin Core has an internal benchmarking framework, with benchmarks
+SubChain Core has an internal benchmarking framework, with benchmarks
 for cryptographic algorithms such as SHA1, SHA256, SHA512 and RIPEMD160. As well as the rolling bloom filter.
 
-After compiling navcoin-core, the benchmarks can be run with:
-`src/bench/bench_navcoin`
+After compiling subchain-core, the benchmarks can be run with:
+`src/bench/bench_subchain`
 
 The output will look similar to:
 ```

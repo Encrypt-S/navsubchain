@@ -6,7 +6,7 @@
 #include "ui_overviewpage.h"
 #include "skinize.h"
 
-#include "navcoinunits.h"
+#include "subchainunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
@@ -31,7 +31,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     TxViewDelegate(const PlatformStyle *platformStyle):
-        QAbstractItemDelegate(), unit(NavCoinUnits::NAV),
+        QAbstractItemDelegate(), unit(SubChainUnits::SUB),
         platformStyle(platformStyle)
     {
 
@@ -85,7 +85,7 @@ public:
             foreground = COLOR_POSITIVE;
         }
         painter->setPen(foreground);
-        QString amountText = NavCoinUnits::formatWithUnit(unit, amount, true, NavCoinUnits::separatorAlways);
+        QString amountText = SubChainUnits::formatWithUnit(unit, amount, true, SubChainUnits::separatorAlways);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
@@ -183,11 +183,11 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
-    ui->labelBalance->setText(NavCoinUnits::formatWithUnit(unit, balance, false, NavCoinUnits::separatorAlways));
-    ui->labelUnconfirmed->setText(NavCoinUnits::formatWithUnit(unit, unconfirmedBalance, false, NavCoinUnits::separatorAlways));
-    ui->labelStaking->setText(NavCoinUnits::formatWithUnit(unit, stakingBalance, false, NavCoinUnits::separatorAlways));
-    ui->labelImmature->setText(NavCoinUnits::formatWithUnit(unit, immatureBalance, false, NavCoinUnits::separatorAlways));
-    ui->labelTotal->setText(NavCoinUnits::formatWithUnit(unit, balance + unconfirmedBalance + stakingBalance, false, NavCoinUnits::separatorAlways));
+    ui->labelBalance->setText(SubChainUnits::formatWithUnit(unit, balance, false, SubChainUnits::separatorAlways));
+    ui->labelUnconfirmed->setText(SubChainUnits::formatWithUnit(unit, unconfirmedBalance, false, SubChainUnits::separatorAlways));
+    ui->labelStaking->setText(SubChainUnits::formatWithUnit(unit, stakingBalance, false, SubChainUnits::separatorAlways));
+    ui->labelImmature->setText(SubChainUnits::formatWithUnit(unit, immatureBalance, false, SubChainUnits::separatorAlways));
+    ui->labelTotal->setText(SubChainUnits::formatWithUnit(unit, balance + unconfirmedBalance + stakingBalance, false, SubChainUnits::separatorAlways));
 
     bool showStaking = stakingBalance != 0;
 
@@ -285,7 +285,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
     }
 
-    // update the display unit, to not use the default ("NAV")
+    // update the display unit, to not use the default ("SUB")
     updateDisplayUnit();
 }
 
@@ -377,9 +377,9 @@ void OverviewPage::updateStakeReport(bool fImmediate=false)
 
     int unit = walletModel->getOptionsModel()->getDisplayUnit();
 
-    ui->label24hStakingStats->setText(NavCoinUnits::formatWithUnit(unit, aRange[i++].Total, false, NavCoinUnits::separatorAlways));
-    ui->label7dStakingStats->setText(NavCoinUnits::formatWithUnit(unit, aRange[i++].Total, false, NavCoinUnits::separatorAlways));
-    ui->label30dStakingStats->setText(NavCoinUnits::formatWithUnit(unit, aRange[i++].Total, false, NavCoinUnits::separatorAlways));
+    ui->label24hStakingStats->setText(SubChainUnits::formatWithUnit(unit, aRange[i++].Total, false, SubChainUnits::separatorAlways));
+    ui->label7dStakingStats->setText(SubChainUnits::formatWithUnit(unit, aRange[i++].Total, false, SubChainUnits::separatorAlways));
+    ui->label30dStakingStats->setText(SubChainUnits::formatWithUnit(unit, aRange[i++].Total, false, SubChainUnits::separatorAlways));
 
 }
 

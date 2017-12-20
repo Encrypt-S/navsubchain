@@ -1,0 +1,8 @@
+/usr/bin/subchain-cli		--	gen_context(system_u:object_r:subchain_exec_t,s0)
+/usr/sbin/subchaind		--	gen_context(system_u:object_r:subchain_exec_t,s0)
+/usr/lib(64)?/subchain/subchaind		--	gen_context(system_u:object_r:subchain_exec_t,s0)
+
+/etc/subchain(/.*)?		gen_context(system_u:object_r:subchain_conf_t,s0)
+/var/lib/subchain(/.*)?		gen_context(system_u:object_r:subchain_var_lib_t,s0)
+
+(/var)?/run/subchaind(/.*)?   gen_context(system_u:object_r:subchain_var_run_t,s0)

@@ -1,0 +1,6 @@
+usr/local/bin/subchain-qt usr/bin
+share/pixmaps/subchain32.xpm usr/share/pixmaps
+share/pixmaps/subchain16.xpm usr/share/pixmaps
+share/pixmaps/subchain128.png usr/share/pixmaps
+debian/subchain-qt.desktop usr/share/applications
+debian/subchain-qt.protocol usr/share/kde4/services/

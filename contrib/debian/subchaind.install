@@ -1,0 +1,2 @@
+usr/local/bin/subchaind usr/bin
+usr/local/bin/subchain-cli usr/bin

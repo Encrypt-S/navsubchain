@@ -35,7 +35,7 @@
      <property name="styleSheet">
       <string notr="true"/>
      </property>
-     <property name="tabKeyNavigation">
+     <property name="tabKeySUBigation">
       <bool>false</bool>
      </property>
      <property name="alternatingRowColors">

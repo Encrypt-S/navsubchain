@@ -6,7 +6,7 @@
 
 #include "addressbookpage.h"
 #include "askpassphrasedialog.h"
-#include "navcoingui.h"
+#include "subchaingui.h"
 #include "clientmodel.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
@@ -88,7 +88,7 @@ WalletView::~WalletView()
 {
 }
 
-void WalletView::setNavCoinGUI(NavCoinGUI *gui)
+void WalletView::setSubChainGUI(SubChainGUI *gui)
 {
     if (gui)
     {
@@ -354,7 +354,7 @@ void WalletView::importPrivateKey()
         return;
       }
 
-      CNavCoinSecret vchSecret;
+      CSubChainSecret vchSecret;
       bool fGood = vchSecret.SetString(privKey.toStdString());
 
       if (!fGood)
@@ -397,7 +397,7 @@ void WalletView::importPrivateKey()
         }
 
         QMessageBox::information(0, tr(PACKAGE_NAME),
-            tr("NavCoin needs to scan the chain... Please, wait."));
+            tr("SubChain needs to scan the chain... Please, wait."));
 
         // whenever a key is imported, we need to scan the whole chain
         pwalletMain->nTimeFirstKey = 1; // 0 would be considered 'no value'
