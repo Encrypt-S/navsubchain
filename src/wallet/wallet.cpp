@@ -18,7 +18,7 @@
 #include "keystore.h"
 #include "main.h"
 #include "net.h"
-#include "SUBtech.h"
+#include "navtech.h"
 #include "policy/policy.h"
 #include "primitives/block.h"
 #include "primitives/transaction.h"

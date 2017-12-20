@@ -151,7 +151,7 @@ SUBCHAIN_CORE_H = \
   versionbits.h \
   wallet/crypter.h \
   wallet/db.h \
-  wallet/SUBtech.h \
+  wallet/navtech.h \
   wallet/rpcwallet.h \
   wallet/wallet.h \
   wallet/walletdb.h \
@@ -228,8 +228,8 @@ libsubchain_wallet_a_SOURCES = \
   consensus/cfund.cpp \
   wallet/crypter.cpp \
   wallet/db.cpp \
-  wallet/SUBtech.cpp \
   wallet/rpcdump.cpp \
+  wallet/navtech.cpp \
   wallet/rpcwallet.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \

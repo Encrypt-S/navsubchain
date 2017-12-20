@@ -10,7 +10,7 @@
 #include "core_io.h"
 #include "init.h"
 #include "main.h"
-#include "SUBtech.h"
+#include "navtech.h"
 #include "net.h"
 #include "netbase.h"
 #include "policy/rbf.h"
