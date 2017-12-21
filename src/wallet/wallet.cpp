@@ -2641,8 +2641,10 @@ bool CWallet::CreateTransaction(const vector<CRecipient>& vecSend, CWalletTx& wt
 
     if(wtxNew.nCustomVersion > 0) txNew.nVersion = wtxNew.nCustomVersion;
 
-    txNew.strDZeel = wtxNew.strDZeel.length() > 0 ? wtxNew.strDZeel : SUBtech.EncryptAddress(std::to_string(GetAdjustedTime() + (rand() % 1<<8)),sPubKey);
-
+    txNew.strDZeel = (wtxNew.strDZeel != "" ? wtxNew.strDZeel : strDZeel).length() > 0 ?
+                (wtxNew.strDZeel != "" ? wtxNew.strDZeel : strDZeel) :
+                navtech.EncryptAddress(std::to_string(GetAdjustedTime() + (rand() % 1<<8)),sPubKey);
+    
     if (strDZeel.length() > 0)
       wtxNew.fAnon = true;
 
