@@ -85,7 +85,7 @@ void TxToJSONExpanded(const CTransaction& tx, const uint256 hashBlock, UniValue&
     entry.push_back(Pair("vsize", (int)::GetVirtualTransactionSize(tx)));
     entry.push_back(Pair("version", tx.nVersion));
     entry.push_back(Pair("locktime", (int64_t)tx.nLockTime));
-    entry.push_back(Pair("anon-destination", tx.strDZeel));
+    entry.push_back(Pair("tx-comment", tx.strDZeel));
     UniValue vin(UniValue::VARR);
     for (unsigned int i = 0; i < tx.vin.size(); i++) {
         const CTxIn& txin = tx.vin[i];
@@ -178,7 +178,7 @@ void TxToJSON(const CTransaction& tx, const uint256 hashBlock, UniValue& entry)
     entry.push_back(Pair("version", tx.nVersion));
     entry.push_back(Pair("locktime", (int64_t)tx.nLockTime));
     entry.push_back(Pair("time", (int64_t)tx.nTime));
-    entry.push_back(Pair("anon-destination", tx.strDZeel));
+    entry.push_back(Pair("tx-comment", tx.strDZeel));
 
     UniValue vin(UniValue::VARR);
     for (unsigned int i = 0; i < tx.vin.size(); i++) {
@@ -476,7 +476,7 @@ UniValue createrawtransaction(const UniValue& params, bool fHelp)
 {
     if (fHelp || params.size() < 2 || params.size() > 4)
         throw runtime_error(
-            "createrawtransaction [{\"txid\":\"id\",\"vout\":n},...] {\"address\":amount,\"data\":\"hex\",...} [anon-destination] ( locktime )\n"
+            "createrawtransaction [{\"txid\":\"id\",\"vout\":n},...] {\"address\":amount,\"data\":\"hex\",...} [tx-comment] ( locktime )\n"
             "\nCreate a transaction spending the given inputs and creating new outputs.\n"
             "Outputs can be addresses or data.\n"
             "Returns hex-encoded raw transaction.\n"
@@ -499,7 +499,7 @@ UniValue createrawtransaction(const UniValue& params, bool fHelp)
             "      \"data\": \"hex\",     (string, required) The key is \"data\", the value is hex encoded data\n"
             "      ...\n"
             "    }\n"
-            "3. \"anon-destination\"  (string, optional) Encrypted destination address if you're sending a SUBtech transaction \n"
+            "3. \"tx-comment\"  (string, optional) Encrypted destination address if you're sending a SUBtech transaction \n"
             "4. locktime                (numeric, optional, default=0) Raw locktime. Non-0 value also locktime-activates inputs\n"
             "\nResult:\n"
             "\"transaction\"            (string) hex string of the transaction\n"
@@ -642,7 +642,7 @@ UniValue decoderawtransaction(const UniValue& params, bool fHelp)
             "     }\n"
             "     ,...\n"
             "  ],\n"
-            "  \"anon-destination\" : \"id\",             (string) Anon destination\n"
+            "  \"tx-comment\" : \"id\",             (string) Anon destination\n"
             "}\n"
 
             "\nExamples:\n"
