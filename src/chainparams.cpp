@@ -141,12 +141,12 @@ public:
         nPruneAfterHeight = 100000;
         bnProofOfWorkLimit = arith_uint256(~arith_uint256() >> 16);
 
-        genesis = CreateGenesisBlock(1513789590, 45846, 0x1f00ffff, 1, 0);
+        genesis = CreateGenesisBlock(1516293746, 286952, 0x1f00ffff, 1, 0);
 
 	consensus.hashGenesisBlock = genesis.GetHash();
-        uint256 hashGenesisBlock = uint256S("0x0000411ba89f46a0b278bc59b32b5950324a986b233ff015a2669cdfd9febac9");
+        uint256 hashGenesisBlock = uint256S("0x000086f746864aa4bdb76b0f5aeb0c991047bc2713d90cc6f2dd650c6bfc1a81");
 
-        if (true && (genesis.GetHash() != hashGenesisBlock || genesis.hashMerkleRoot != uint256S("0xb86dcf22d48da81a2d49c8acea4c972e73f9c7721ba434d8ceb506c86e905410")))
+        if (true && (genesis.GetHash() != hashGenesisBlock || genesis.hashMerkleRoot != uint256S("0x5d3fbf92683a6de262f04077d8114b0822037ba8f64a1ffc71f545bc9a259235")))
         {
             printf("recalculating params for testnet.\n");
             printf("old testnet genesis nonce: %d\n", genesis.nNonce);
@@ -159,12 +159,12 @@ public:
         }
 
 
-        assert(consensus.hashGenesisBlock == uint256S("0x0000411ba89f46a0b278bc59b32b5950324a986b233ff015a2669cdfd9febac9"));
-        assert(genesis.hashMerkleRoot == uint256S("0xb86dcf22d48da81a2d49c8acea4c972e73f9c7721ba434d8ceb506c86e905410"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000086f746864aa4bdb76b0f5aeb0c991047bc2713d90cc6f2dd650c6bfc1a81"));
+        assert(genesis.hashMerkleRoot == uint256S("0x5d3fbf92683a6de262f04077d8114b0822037ba8f64a1ffc71f545bc9a259235"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,57);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,63);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,150);
+        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,191);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
