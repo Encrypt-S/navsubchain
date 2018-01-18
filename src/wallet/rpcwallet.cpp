@@ -85,7 +85,7 @@ void WalletTxToJSON(const CWalletTx& wtx, UniValue& entry)
     entry.push_back(Pair("walletconflicts", conflicts));
     entry.push_back(Pair("time", wtx.GetTxTime()));
     entry.push_back(Pair("timereceived", (int64_t)wtx.nTimeReceived));
-    entry.push_back(Pair("anon-destination", wtx.strDZeel));
+    entry.push_back(Pair("tx-comment", wtx.strDZeel));
     // Add opt-in RBF status
     std::string rbfStatus = "no";
     if (confirms <= 0) {
@@ -387,7 +387,7 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
 
     if (fHelp || params.size() < 2 || params.size() > 6)
         throw runtime_error(
-            "sendtoaddress \"subchainaddress\" amount ( \"comment\" \"comment-to\" \"anon-destination\" subtractfeefromamount )\n"
+            "sendtoaddress \"subchainaddress\" amount ( \"comment\" \"comment-to\" \"tx-comment\" subtractfeefromamount )\n"
             "\nSend an amount to a given address.\n"
             + HelpRequiringPassphrase() +
             "\nArguments:\n"
@@ -398,7 +398,7 @@ UniValue sendtoaddress(const UniValue& params, bool fHelp)
             "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
             "                             to which you're sending the transaction. This is not part of the \n"
             "                             transaction, just kept in your wallet.\n"
-            "5. \"anon-destination\"  (string, optional) Encrypted destination address if you're sending a SUBtech transaction \n"
+            "5. \"tx-comment\"  (string, optional) Encrypted destination address if you're sending a SUBtech transaction \n"
             "6. subtractfeefromamount  (boolean, optional, default=false) The fee will be deducted from the amount being sent.\n"
             "                             The recipient will receive less subchains than you enter in the amount field.\n"
             "\nResult:\n"
