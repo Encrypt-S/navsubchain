@@ -2492,6 +2492,9 @@ int32_t ComputeBlockVersion(const CBlockIndex* pindexPrev, const Consensus::Para
             nVersion |= VersionBitsMask(params, (Consensus::DeploymentPos)i);
         }
     }
+	
+    if(IsWitnessEnabled(pindexPrev,Params().GetConsensus()))
+        nVersion |= nSegWitVersionMask;
 
     return nVersion;
 }
